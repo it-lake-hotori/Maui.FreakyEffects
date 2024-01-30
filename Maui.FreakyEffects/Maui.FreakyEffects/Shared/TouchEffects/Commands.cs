@@ -44,6 +44,10 @@ public static class Commands
 
     public static object GetTapParameter(BindableObject view)
     {
+        if(view is View mauiView && mauiView.Behaviors.FirstOrDefault(x => x is ITouchEffectBehavior) is ITouchEffectBehavior behavior)
+        {
+            return behavior.CommandParameter ?? view.BindingContext;
+        }
         return view.GetValue(TapParameterProperty);
     }
 
@@ -81,6 +85,11 @@ public static class Commands
 
     public static object GetLongTapParameter(BindableObject view)
     {
+        if(view is View mauiView && mauiView.Behaviors.FirstOrDefault(x => x is ITouchEffectBehavior) is ITouchEffectBehavior behavior)
+        {
+            return behavior.LongTapCommandParameter ?? view.BindingContext;
+        }
+
         return view.GetValue(LongTapParameterProperty);
     }
 

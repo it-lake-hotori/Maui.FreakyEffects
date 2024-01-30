@@ -50,7 +50,7 @@ public class TouchEffectPlatform : PlatformEffect
         };
         Container.LayoutChange += ViewOnLayoutChange;
 
-        if (EnableRipple)
+        if(EnableRipple)
             _viewOverlay.Background = CreateRipple(_color);
 
         SetEffectColor();
@@ -58,6 +58,31 @@ public class TouchEffectPlatform : PlatformEffect
 
         group.AddView(_viewOverlay);
         _viewOverlay.BringToFront();
+
+
+        // 背景用のビューを最下層に配置する
+        //_viewOverlay = new FrameLayout(Container.Context)
+        //{
+        //    LayoutParameters = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent),
+        //    Clickable = false,
+        //    Focusable = false,
+        //};
+        //Container.LayoutChange += ViewOnLayoutChange;
+
+        //if(Container is ViewGroup)
+        //{
+        //    group.AddView(_viewOverlay, 0);
+        //}
+        //_viewOverlay.BringToFront();
+
+        //TouchCollector.Add(View, OnTouch);
+
+        //if(EnableRipple)
+        //{
+        //    _viewOverlay.Background = CreateRipple(_color);
+        //}
+
+        //SetEffectColor();
     }
 
     protected override void OnDetached()
